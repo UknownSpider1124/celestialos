@@ -1,26 +1,808 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Celestial Arch OS</title>
+
 <style>
 :root{color-scheme:dark;--bg:#071018;--glass:rgba(16,25,38,.64);--glass2:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--text:#f5f7fb;--muted:#9aa8ba;--a:#8df4ff;--b:#9f8cff;--c:#ff72d2;--shadow:0 24px 80px rgba(0,0,0,.42)}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#071018;color:var(--text)}
-body{overflow-x:hidden}.root{min-height:100vh;background:radial-gradient(circle at 15% 10%,rgba(99,232,255,.16),transparent 28%),radial-gradient(circle at 90% 18%,rgba(169,111,255,.18),transparent 32%),linear-gradient(145deg,#071018 0%,#0b1220 50%,#090b16 100%);position:relative;isolation:isolate}
-.root:before,.root:after{content:"";position:absolute;inset:auto;filter:blur(60px);opacity:.35;z-index:-1;border-radius:50%;pointer-events:none}.root:before{width:260px;height:260px;background:#39e8ff;left:25%;top:38%}.root:after{width:340px;height:340px;background:#9d5cff;right:8%;bottom:5%}
-.top{height:76px;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid var(--line);background:rgba(5,10,18,.46);backdrop-filter:blur(24px);position:sticky;top:0;z-index:10}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}.brand img{width:40px;height:40px;object-fit:contain;border-radius:12px;filter:drop-shadow(0 0 16px rgba(141,244,255,.28))}.brand small{display:block;color:var(--muted);font-weight:500;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}.nav{display:flex;gap:6px}.nav button,.iconbtn,.cta,.tile,.app{font:inherit;color:inherit;border:1px solid var(--line);background:var(--glass2);backdrop-filter:blur(18px);cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease}.nav button{padding:10px 15px;border-radius:12px;font-size:13px;color:#c5d0df}.nav button:hover,.iconbtn:hover,.cta:hover,.tile:hover,.app:hover{transform:scale(1.055);background:rgba(255,255,255,.105);border-color:rgba(141,244,255,.34);box-shadow:0 12px 35px rgba(0,0,0,.22)}
-.actions{display:flex;gap:8px}.iconbtn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center}.hero{padding:70px 6vw 42px;display:grid;grid-template-columns:1.35fr .65fr;gap:30px;align-items:end}.eyebrow{color:var(--a);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;font-weight:800}.hero h1{font-size:clamp(46px,7vw,88px);line-height:.9;margin:16px 0 20px;letter-spacing:-5px;max-width:800px}.gradient{background:linear-gradient(100deg,#fff 0%,#9df6ff 42%,#c1a9ff 76%,#ff8bdc 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:650px;color:#aebacc;font-size:17px;line-height:1.65;margin:0}.hero-card{padding:22px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));backdrop-filter:blur(25px);box-shadow:var(--shadow)}.orb{height:170px;border-radius:20px;display:grid;place-items:center;background:radial-gradient(circle,#bafaff 0 3%,rgba(103,229,255,.34) 5%,transparent 27%),radial-gradient(circle at 70% 30%,rgba(194,135,255,.55),transparent 28%),linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.11);overflow:hidden;position:relative}.orb:after{content:"";width:86px;height:86px;border:1px solid rgba(255,255,255,.35);border-radius:30px;transform:rotate(18deg);box-shadow:0 0 50px rgba(141,244,255,.35);animation:float 4s ease-in-out infinite}.stats{display:flex;justify-content:space-between;margin-top:16px}.stats b{font-size:19px}.stats span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.section{padding:24px 6vw 70px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.section h2{font-size:25px;margin:0;letter-spacing:-1px}.section-head p{margin:0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.tile{padding:18px;border-radius:20px;text-align:left;min-height:170px}.tile img{width:34px;height:34px;object-fit:contain;margin-bottom:28px;border-radius:10px}.tile strong{display:block;font-size:16px}.tile span{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:7px}.workspace{display:grid;grid-template-columns:1.5fr .5fr;gap:14px}.panel{border:1px solid var(--line);border-radius:24px;background:var(--glass);backdrop-filter:blur(28px);box-shadow:var(--shadow);overflow:hidden}.panel-top{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:#c9d2df;font-size:12px}.dots{display:flex;gap:5px}.dots i{width:7px;height:7px;border-radius:50%;background:#69788d}.preview{padding:24px;min-height:310px;display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.mock{border:1px solid var(--line);border-radius:18px;padding:18px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025))}.mock img{width:52px;height:52px;border-radius:15px;object-fit:contain}.mock h3{margin:18px 0 6px;font-size:25px}.mock p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}.bar{height:9px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:18px;overflow:hidden}.bar i{display:block;width:72%;height:100%;background:linear-gradient(90deg,var(--a),var(--b));border-radius:99px}.apps{display:grid;gap:9px}.app{border-radius:15px;padding:13px;display:flex;align-items:center;gap:11px;text-align:left}.app img{width:30px;height:30px;object-fit:contain;border-radius:9px}.app small{color:var(--muted);display:block;margin-top:2px}.footer{padding:18px 6vw 32px;color:#718095;font-size:11px;display:flex;justify-content:space-between}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;padding:12px 16px;border:1px solid var(--line);background:rgba(10,17,28,.82);backdrop-filter:blur(18px);border-radius:14px;color:#dce7f5;font-size:12px;transition:.25s;z-index:30}.toast.show{opacity:1;transform:translate(-50%,0)}@keyframes float{50%{transform:rotate(28deg) translateY(-9px)}}
-@media(max-width:900px){.hero,.workspace{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.nav{display:none}.hero{padding-top:45px}}@media(max-width:560px){.top{padding:12px 16px}.hero,.section{padding-left:16px;padding-right:16px}.grid{grid-template-columns:1fr}.preview{grid-template-columns:1fr}.hero h1{letter-spacing:-3px}.footer{padding-left:16px;padding-right:16px}}
-</style></head>
-<body><main class="root" id="app">
-<header class="top"><div class="brand"><img src="icon.png" alt="Celestial Arch OS icon"><div>CELESTIAL ARCH OS<small>Play · Create · Customize</small></div></div><nav class="nav"><button data-sound>Home</button><button data-sound>Gaming</button><button data-sound>Studio</button></nav><div class="actions"><button class="iconbtn" aria-label="Search" data-sound>⌕</button><button class="iconbtn" aria-label="Settings" data-sound>⚙</button></div></header>
-<section class="hero"><div><div class="eyebrow">A new desktop experience</div><h1>Make the OS <span class="gradient">yours.</span></h1><p>A glass-first operating environment designed for gamers, creators, and people who want every corner of their desktop to feel personal.</p><div style="display:flex;gap:9px;margin-top:25px"><button class="cta" data-sound style="padding:13px 18px;border-radius:13px;background:linear-gradient(135deg,rgba(141,244,255,.18),rgba(159,140,255,.16))">Enter workspace ↗</button><button class="cta" data-sound style="padding:13px 18px;border-radius:13px">Explore features</button></div></div><aside class="hero-card"><div class="orb"><img src="icon.png" alt="" style="width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 0 25px rgba(141,244,255,.5))"></div><div class="stats"><div><b>120 FPS</b><span>Game mode</span></div><div><b>4K</b><span>Studio canvas</span></div><div><b>∞</b><span>Your themes</span></div></div></aside></section>
-<section class="section"><div class="section-head"><div><h2>One OS. Three modes.</h2><p>Everything is one zoom away.</p></div></div><div class="grid"><button class="tile" data-sound><img src="icon.png"><strong>Game Space</strong><span>Low-latency focus, performance overlays, quick capture and distraction-free play.</span></button><button class="tile" data-sound><img src="icon.png"><strong>Studio</strong><span>A clean creative workspace for video, music, 3D, design and production.</span></button><button class="tile" data-sound><img src="icon.png"><strong>Theme Lab</strong><span>Shape glass, lighting, accents, wallpapers and motion without digging through menus.</span></button><button class="tile" data-sound><img src="icon.png"><strong>Control Center</strong><span>Devices, performance, audio, network and profiles in one fluid surface.</span></button></div></section>
-<section class="section"><div class="section-head"><div><h2>Your glass workspace</h2><p>Layered panels, soft depth, deliberate motion.</p></div></div><div class="workspace"><div class="panel"><div class="panel-top"><span>DESKTOP / OVERVIEW</span><div class="dots"><i></i><i></i><i></i></div></div><div class="preview"><div class="mock"><img src="icon.png"><h3>Welcome back.</h3><p>Your sessions, projects and games are ready. Everything stays within reach without covering the work.</p><div class="bar"><i></i></div><p style="margin-top:9px">Workspace load · 72%</p></div><div class="mock"><div class="apps"><button class="app" data-sound><img src="icon.png"><div><b>Game Hub</b><small>12 ready to launch</small></div></button><button class="app" data-sound><img src="icon.png"><div><b>Studio Desk</b><small>3 active projects</small></div></button><button class="app" data-sound><img src="icon.png"><div><b>Theme Lab</b><small>New preset available</small></div></button><button class="app" data-sound><img src="icon.png"><div><b>Quick Tools</b><small>Audio · capture · devices</small></div></button></div></div></div></div><div class="panel" style="padding:20px"><div class="eyebrow">Design language</div><h3 style="font-size:22px;margin:10px 0">Glass that gets out of the way.</h3><p style="color:var(--muted);font-size:13px;line-height:1.65">Translucent layers keep context visible. Hover any control for a subtle zoom. Clicks use a soft synthesized UI tone.</p><button class="cta" data-sound style="width:100%;margin-top:12px;padding:12px;border-radius:13px">Customize UI</button></div></div></section>
-<section class="section" style="padding-top:0"><div class="panel" style="padding:24px"><div class="eyebrow">The people behind Celestial Arch OS</div><div class="grid" style="margin-top:16px"><div><strong>Founders</strong><p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">Devansh Singh<br>Rudransh Pandey</p></div><div><strong>Owner &amp; Social Media Handler</strong><p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">Aviral Pandey</p></div><div><strong>Release</strong><p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">Targeting August 2028</p></div><div><strong>Vision</strong><p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">Customize · Game · Create</p></div></div></div></section>
-<footer class="footer"><span>CELESTIAL ARCH OS · concept interface</span><span>Target release · August 2028</span></footer><div class="toast" id="toast">Opening workspace…</div></main>
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#071018;
+  color:var(--text)
+}
+
+body{overflow-x:hidden}
+
+.root{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(99,232,255,.16),transparent 28%),
+    radial-gradient(circle at 90% 18%,rgba(169,111,255,.18),transparent 32%),
+    linear-gradient(145deg,#071018 0%,#0b1220 50%,#090b16 100%);
+  position:relative;
+  isolation:isolate
+}
+
+.root:before,.root:after{
+  content:"";
+  position:absolute;
+  inset:auto;
+  filter:blur(60px);
+  opacity:.35;
+  z-index:-1;
+  border-radius:50%;
+  pointer-events:none
+}
+
+.root:before{
+  width:260px;
+  height:260px;
+  background:#39e8ff;
+  left:25%;
+  top:38%
+}
+
+.root:after{
+  width:340px;
+  height:340px;
+  background:#9d5cff;
+  right:8%;
+  bottom:5%
+}
+
+.top{
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 28px;
+  border-bottom:1px solid var(--line);
+  background:rgba(5,10,18,.46);
+  backdrop-filter:blur(24px);
+  position:sticky;
+  top:0;
+  z-index:10
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:800;
+  letter-spacing:.2px
+}
+
+.brand img{
+  width:40px;
+  height:40px;
+  object-fit:contain;
+  border-radius:12px;
+  filter:drop-shadow(0 0 16px rgba(141,244,255,.28))
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-weight:500;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase
+}
+
+.nav{
+  display:flex;
+  gap:6px
+}
+
+.nav button,.iconbtn,.cta,.tile,.app{
+  font:inherit;
+  color:inherit;
+  border:1px solid var(--line);
+  background:var(--glass2);
+  backdrop-filter:blur(18px);
+  cursor:pointer;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease
+}
+
+.nav button{
+  padding:10px 15px;
+  border-radius:12px;
+  font-size:13px;
+  color:#c5d0df
+}
+
+.nav button:hover,.iconbtn:hover,.cta:hover,.tile:hover,.app:hover{
+  transform:scale(1.055);
+  background:rgba(255,255,255,.105);
+  border-color:rgba(141,244,255,.34);
+  box-shadow:0 12px 35px rgba(0,0,0,.22)
+}
+
+.actions{
+  display:flex;
+  gap:8px
+}
+
+.iconbtn{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  display:grid;
+  place-items:center
+}
+
+.hero{
+  padding:70px 6vw 42px;
+  display:grid;
+  grid-template-columns:1.35fr .65fr;
+  gap:30px;
+  align-items:end
+}
+
+.eyebrow{
+  color:var(--a);
+  font-size:12px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  font-weight:800
+}
+
+.hero h1{
+  font-size:clamp(46px,7vw,88px);
+  line-height:.9;
+  margin:16px 0 20px;
+  letter-spacing:-5px;
+  max-width:800px
+}
+
+.gradient{
+  background:linear-gradient(100deg,#fff 0%,#9df6ff 42%,#c1a9ff 76%,#ff8bdc 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent
+}
+
+.hero p{
+  max-width:650px;
+  color:#aebacc;
+  font-size:17px;
+  line-height:1.65;
+  margin:0
+}
+
+.hero-card{
+  padding:22px;
+  border-radius:24px;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));
+  backdrop-filter:blur(25px);
+  box-shadow:var(--shadow)
+}
+
+.orb{
+  height:170px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle,#bafaff 0 3%,rgba(103,229,255,.34) 5%,transparent 27%),
+    radial-gradient(circle at 70% 30%,rgba(194,135,255,.55),transparent 28%),
+    linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.11);
+  overflow:hidden;
+  position:relative
+}
+
+.orb:after{
+  content:"";
+  width:86px;
+  height:86px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:30px;
+  transform:rotate(18deg);
+  box-shadow:0 0 50px rgba(141,244,255,.35);
+  animation:float 4s ease-in-out infinite
+}
+
+.stats{
+  display:flex;
+  justify-content:space-between;
+  margin-top:16px
+}
+
+.stats b{
+  font-size:19px
+}
+
+.stats span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px
+}
+
+.section{
+  padding:24px 6vw 70px
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:16px
+}
+
+.section h2{
+  font-size:25px;
+  margin:0;
+  letter-spacing:-1px
+}
+
+.section-head p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
+}
+
+.tile{
+  padding:18px;
+  border-radius:20px;
+  text-align:left;
+  min-height:170px
+}
+
+.tile img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  margin-bottom:28px;
+  border-radius:10px
+}
+
+.tile strong{
+  display:block;
+  font-size:16px
+}
+
+.tile span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin-top:7px
+}
+
+.workspace{
+  display:grid;
+  grid-template-columns:1.5fr .5fr;
+  gap:14px
+}
+
+.panel{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--glass);
+  backdrop-filter:blur(28px);
+  box-shadow:var(--shadow);
+  overflow:hidden
+}
+
+.panel-top{
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#c9d2df;
+  font-size:12px
+}
+
+.dots{
+  display:flex;
+  gap:5px
+}
+
+.dots i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#69788d
+}
+
+.preview{
+  padding:24px;
+  min-height:310px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:14px
+}
+
+.mock{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025))
+}
+
+.mock img{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  object-fit:contain
+}
+
+.mock h3{
+  margin:18px 0 6px;
+  font-size:25px
+}
+
+.mock p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6
+}
+
+.bar{
+  height:9px;
+  border-radius:99px;
+  background:rgba(255,255,255,.08);
+  margin-top:18px;
+  overflow:hidden
+}
+
+.bar i{
+  display:block;
+  width:72%;
+  height:100%;
+  background:linear-gradient(90deg,var(--a),var(--b));
+  border-radius:99px
+}
+
+.apps{
+  display:grid;
+  gap:9px
+}
+
+.app{
+  border-radius:15px;
+  padding:13px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  text-align:left
+}
+
+.app img{
+  width:30px;
+  height:30px;
+  object-fit:contain;
+  border-radius:9px
+}
+
+.app small{
+  color:var(--muted);
+  display:block;
+  margin-top:2px
+}
+
+.footer{
+  padding:18px 6vw 32px;
+  color:#718095;
+  font-size:11px;
+  display:flex;
+  justify-content:space-between
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  padding:12px 16px;
+  border:1px solid var(--line);
+  background:rgba(10,17,28,.82);
+  backdrop-filter:blur(18px);
+  border-radius:14px;
+  color:#dce7f5;
+  font-size:12px;
+  transition:.25s;
+  z-index:30
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+@keyframes float{
+  50%{transform:rotate(28deg) translateY(-9px)}
+}
+
+@media(max-width:900px){
+  .hero,.workspace{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .nav{display:none}
+  .hero{padding-top:45px}
+}
+
+@media(max-width:560px){
+  .top{padding:12px 16px}
+  .hero,.section{padding-left:16px;padding-right:16px}
+  .grid{grid-template-columns:1fr}
+  .preview{grid-template-columns:1fr}
+  .hero h1{letter-spacing:-3px}
+  .footer{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+
+<body>
+
+<main class="root" id="app">
+
+<header class="top">
+  <div class="brand">
+    <img src="logo.png" alt="Celestial Arch OS icon">
+    <div>
+      CELESTIAL ARCH OS
+      <small>Play · Create · Customize</small>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <button data-sound>Home</button>
+    <button data-sound>Gaming</button>
+    <button data-sound>Studio</button>
+  </nav>
+
+  <div class="actions">
+    <button class="iconbtn" aria-label="Search" data-sound>⌕</button>
+    <button class="iconbtn" aria-label="Settings" data-sound>⚙</button>
+  </div>
+</header>
+
+<section class="hero">
+
+  <div>
+    <div class="eyebrow">A new desktop experience</div>
+
+    <h1>
+      Make the OS <span class="gradient">yours.</span>
+    </h1>
+
+    <p>
+      A glass-first operating environment designed for gamers,
+      creators, and people who want every corner of their desktop
+      to feel personal.
+    </p>
+
+    <div style="display:flex;gap:9px;margin-top:25px">
+      <button class="cta" data-sound style="padding:13px 18px;border-radius:13px;background:linear-gradient(135deg,rgba(141,244,255,.18),rgba(159,140,255,.16))">
+        Enter workspace ↗
+      </button>
+
+      <button class="cta" data-sound style="padding:13px 18px;border-radius:13px">
+        Explore features
+      </button>
+    </div>
+  </div>
+
+  <aside class="hero-card">
+
+    <div class="orb">
+      <img src="logo.png" alt="" style="width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 0 25px rgba(141,244,255,.5))">
+    </div>
+
+    <div class="stats">
+      <div>
+        <b>120 FPS</b>
+        <span>Game mode</span>
+      </div>
+
+      <div>
+        <b>4K</b>
+        <span>Studio canvas</span>
+      </div>
+
+      <div>
+        <b>∞</b>
+        <span>Your themes</span>
+      </div>
+    </div>
+
+  </aside>
+
+</section>
+
+<section class="section">
+
+  <div class="section-head">
+    <div>
+      <h2>One OS. Three modes.</h2>
+      <p>Everything is one zoom away.</p>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <button class="tile" data-sound>
+      <img src="logo.png">
+      <strong>Game Space</strong>
+      <span>
+        Low-latency focus, performance overlays,
+        quick capture and distraction-free play.
+      </span>
+    </button>
+
+    <button class="tile" data-sound>
+      <img src="logo.png">
+      <strong>Studio</strong>
+      <span>
+        A clean creative workspace for video,
+        music, 3D, design and production.
+      </span>
+    </button>
+
+    <button class="tile" data-sound>
+      <img src="logo.png">
+      <strong>Theme Lab</strong>
+      <span>
+        Shape glass, lighting, accents, wallpapers
+        and motion without digging through menus.
+      </span>
+    </button>
+
+    <button class="tile" data-sound>
+      <img src="logo.png">
+      <strong>Control Center</strong>
+      <span>
+        Devices, performance, audio, network
+        and profiles in one fluid surface.
+      </span>
+    </button>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-head">
+    <div>
+      <h2>Your glass workspace</h2>
+      <p>Layered panels, soft depth, deliberate motion.</p>
+    </div>
+  </div>
+
+  <div class="workspace">
+
+    <div class="panel">
+
+      <div class="panel-top">
+        <span>DESKTOP / OVERVIEW</span>
+
+        <div class="dots">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+      </div>
+
+      <div class="preview">
+
+        <div class="mock">
+
+          <img src="logo.png">
+
+          <h3>Welcome back.</h3>
+
+          <p>
+            Your sessions, projects and games are ready.
+            Everything stays within reach without covering the work.
+          </p>
+
+          <div class="bar">
+            <i></i>
+          </div>
+
+          <p style="margin-top:9px">
+            Workspace load · 72%
+          </p>
+
+        </div>
+
+        <div class="mock">
+
+          <div class="apps">
+
+            <button class="app" data-sound>
+              <img src="logo.png">
+
+              <div>
+                <b>Game Hub</b>
+                <small>12 ready to launch</small>
+              </div>
+            </button>
+
+            <button class="app" data-sound>
+              <img src="logo.png">
+
+              <div>
+                <b>Studio Desk</b>
+                <small>3 active projects</small>
+              </div>
+            </button>
+
+            <button class="app" data-sound>
+              <img src="logo.png">
+
+              <div>
+                <b>Theme Lab</b>
+                <small>New preset available</small>
+              </div>
+            </button>
+
+            <button class="app" data-sound>
+              <img src="logo.png">
+
+              <div>
+                <b>Quick Tools</b>
+                <small>Audio · capture · devices</small>
+              </div>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel" style="padding:20px">
+
+      <div class="eyebrow">Design language</div>
+
+      <h3 style="font-size:22px;margin:10px 0">
+        Glass that gets out of the way.
+      </h3>
+
+      <p style="color:var(--muted);font-size:13px;line-height:1.65">
+        Translucent layers keep context visible.
+        Hover any control for a subtle zoom.
+        Clicks use a soft synthesized UI tone.
+      </p>
+
+      <button class="cta" data-sound style="width:100%;margin-top:12px;padding:12px;border-radius:13px">
+        Customize UI
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" style="padding-top:0">
+
+  <div class="panel" style="padding:24px">
+
+    <div class="eyebrow">
+      The people behind Celestial Arch OS
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+
+      <div>
+        <strong>Founders</strong>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">
+          Devansh Singh<br>
+          Rudransh Pandey
+        </p>
+      </div>
+
+      <div>
+        <strong>Owner &amp; Social Media Handler</strong>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">
+          Aviral Pandey
+        </p>
+      </div>
+
+      <div>
+        <strong>Release</strong>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">
+          Targeting August 2028
+        </p>
+      </div>
+
+      <div>
+        <strong>Vision</strong>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0">
+          Customize · Game · Create
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="footer">
+  <span>CELESTIAL ARCH OS · concept interface</span>
+  <span>Target release · August 2028</span>
+</footer>
+
+<div class="toast" id="toast">
+  Opening workspace…
+</div>
+
+</main>
+
 <script>
-let audioCtx;function tone(freq=620,dur=.045,type='sine'){try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.0001,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.045,audioCtx.currentTime+.008);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur)}catch(e){}}
-const toast=document.querySelector('#toast');document.querySelectorAll('[data-sound]').forEach((el,i)=>{el.addEventListener('mouseenter',()=>tone(500+i%3*70,.025,'sine'));el.addEventListener('click',()=>{tone(760,.055,'triangle');toast.classList.add('show');clearTimeout(window.t);window.t=setTimeout(()=>toast.classList.remove('show'),900)})});
-</script></body></html>
+
+let audioCtx;
+
+function tone(freq=620,dur=.045,type='sine'){
+  try{
+    audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();
+
+    const o=audioCtx.createOscillator(),
+          g=audioCtx.createGain();
+
+    o.type=type;
+    o.frequency.value=freq;
+
+    g.gain.setValueAtTime(.0001,audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.045,audioCtx.currentTime+.008);
+    g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);
+
+    o.connect(g).connect(audioCtx.destination);
+    o.start();
+    o.stop(audioCtx.currentTime+dur);
+
+  }catch(e){}
+}
+
+const toast=document.querySelector('#toast');
+
+document.querySelectorAll('[data-sound]').forEach((el,i)=>{
+
+  el.addEventListener('mouseenter',()=>{
+    tone(500+i%3*70,.025,'sine');
+  });
+
+  el.addEventListener('click',()=>{
+    tone(760,.055,'triangle');
+
+    toast.classList.add('show');
+
+    clearTimeout(window.t);
+
+    window.t=setTimeout(()=>{
+      toast.classList.remove('show');
+    },900);
+  });
+
+});
+
+</script>
+
+</body>
+</html>
+```
